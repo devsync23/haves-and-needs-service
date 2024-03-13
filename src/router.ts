@@ -7,10 +7,6 @@ import {
   loginUser
 } from './users/user.controller'
 
-import {
-  getHaves
-} from './have/have.controller'
-
 import { verifyToken } from './middleware/auth'
 
 
