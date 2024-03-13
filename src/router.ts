@@ -1,11 +1,16 @@
 import express from 'express'
 
-import { 
+import {
   createUser,
   getUser,
   getUsers,
   loginUser
 } from './users/user.controller'
+
+import {
+  getHaves
+} from './have/have.controller'
+
 import { verifyToken } from './middleware/auth'
 
 
@@ -32,6 +37,5 @@ router.route('/users')
 
 router.route('/users/:id')
   .get(getUser)
-
 
 export default router
