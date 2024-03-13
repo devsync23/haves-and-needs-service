@@ -67,4 +67,4 @@ const NeedsSchema = new Schema({
     timestamps: true
 })
 
-export default model('Needs', NeedsSchema)
+export default model('Need', NeedsSchema)
