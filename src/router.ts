@@ -1,6 +1,6 @@
 import express from 'express'
 
-import {
+import { 
   createUser,
   getUser,
   getUsers,
@@ -20,12 +20,10 @@ router.use((req, res, next) => {
   next()
 })
 
-
 router.route('/login')
   .post(loginUser)
 router.route('/register')
   .post(createUser)
-
 
 // User routes
 router.route('/users')
@@ -34,6 +32,5 @@ router.route('/users')
 
 router.route('/users/:id')
   .get(getUser)
-
 
 export default router
