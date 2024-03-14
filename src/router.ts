@@ -17,7 +17,7 @@ import {
 from './have/have.controller'
 
 import { verifyToken } from './middleware/auth'
-
+import { validateRegister } from './users/user.middleware'
 
 const router = express.Router()
 
@@ -38,7 +38,7 @@ router.route('/register')
 // User routes
 router.route('/users')
   .get(getUsers)
-  .post(createUser)
+  .post(validateRegister, createUser)
 
 router.route('/users/:id')
   .get(getUser)

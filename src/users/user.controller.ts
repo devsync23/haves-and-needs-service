@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import User from './user.model'
 import { JWT_SECRET } from '../constants'
+import { validateRegister } from './user.middleware'
 
 export async function getUser(req: Request, res: Response) {
   try {
@@ -19,6 +20,12 @@ export async function getUsers(req: Request, res: Response) {
 
 export async function createUser(req: Request, res: Response, next: NextFunction) {
   try {
+    const { email } = req.body;
+
+    if (!validateRegister(req, res, next)) {
+      return res.status(400).json({ message: 'Invalid email format' });
+    }
+    
     const hashPassword = await bcrypt.hash(req.body.password, 10)
     const user = new User({
       name: req.body.name,
@@ -47,10 +54,10 @@ export async function loginUser(req: Request, res: Response) {
   try {
     const user = await User.findOne({ email });
     if (!user)return res.status(404).json({ message: 'User not found' })
-  
+
     const isPasswordValid = bcrypt.compare(password, user.password ?? '')
     if (!isPasswordValid) return res.status(401).json({ message: 'Invalid password' })
-  
+
     // Password is valid, generate JWT token
     const token = jwt.sign(
       {
