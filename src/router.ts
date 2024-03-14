@@ -20,13 +20,6 @@ router.use((req, res, next) => {
   next()
 })
 
-router.route('/')
-  .get((req, res) => {
-    res.send({ get: "GET" })
-  })
-  .post((req, res) => {
-    res.send({ post: "POST" })
-  })
 
 router.route('/login')
   .post(loginUser)
