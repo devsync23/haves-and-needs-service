@@ -9,7 +9,7 @@ import {
 
 import {
   getHaves,
-  createHaves,
+  createHave,
   getHave,
   updateHave,
   deleteHave
@@ -46,7 +46,7 @@ router.route('/users/:id')
 // Have routes
 router.route('/api/haves')
   .get(getHaves)
-  .post(createHaves)
+  .post(createHave)
 
 router.route('/api/haves/:id')
   .get(getHave)
