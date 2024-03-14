@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express'
 import Have from './have.model'
 
 // under api/haves route
-export async function createHaves(req: Request ,res: Response){
+export async function createHave(req: Request ,res: Response){
     try{
         res.send('API Route Reached')
     } catch (err){
