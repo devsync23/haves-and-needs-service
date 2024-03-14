@@ -47,10 +47,10 @@ export async function loginUser(req: Request, res: Response) {
   try {
     const user = await User.findOne({ email });
     if (!user)return res.status(404).json({ message: 'User not found' })
-  
-    const isPasswordValid = bcrypt.compare(password, user.password ?? '')
+
+    const isPasswordValid = await bcrypt.compare(password, user.password ?? '')
     if (!isPasswordValid) return res.status(401).json({ message: 'Invalid password' })
-  
+
     // Password is valid, generate JWT token
     const token = jwt.sign(
       {

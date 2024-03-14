@@ -16,6 +16,8 @@ import {
 }
 from './have/have.controller'
 
+import { validateUserRequest } from './users/user.middleware'
+
 import { verifyToken } from './middleware/auth'
 
 
@@ -31,9 +33,9 @@ router.use((req, res, next) => {
 })
 
 router.route('/login')
-  .post(loginUser)
+  .post(validateUserRequest, loginUser)
 router.route('/register')
-  .post(createUser)
+  .post(validateUserRequest, createUser)
 
 // User routes
 router.route('/users')
