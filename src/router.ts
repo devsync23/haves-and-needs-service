@@ -1,12 +1,13 @@
 import express from 'express'
 
-import { 
+import {
   createUser,
   getUser,
   getUsers,
   loginUser
 } from './users/user.controller'
 import { verifyToken } from './middleware/auth'
+import { createNeed, deleteNeed, getNeed, getNeeds, updateNeed } from './needs/need.controller'
 
 
 const router = express.Router()
@@ -33,5 +34,14 @@ router.route('/users')
 router.route('/users/:id')
   .get(getUser)
 
+// Need routes
+router.route('/needs')
+  .get(getNeeds)
+  .post(createNeed)
+
+router.route('/needs/:id')
+  .get(getNeed)
+  .put(updateNeed)
+  .delete(deleteNeed)
 
 export default router
