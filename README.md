@@ -25,29 +25,34 @@ This application is built using Node.js and Express, with MongoDB as the databas
 ## Directory Structure
 ```
 src
+├── fulfillments
+|   └── TODO
+├── haves
+|   └── TODO
+├── middleware
+│   └── auth.ts
+├── needs
+|   └── TODO
+└── users
+    ├── user.controller.ts
+    ├── user.model.ts
+    └── user.types.d.ts
 ├── constants.ts
 ├── db.ts
-├── haves
 ├── index.d.ts
 ├── index.ts
-├── middleware
-│ └── auth.ts
-├── needs
-├── router.ts
-└── users
-├── user.controller.ts
-├── user.model.ts
-└── user.types.d.ts
+└── router.ts
 ```
-- **constants.ts**: Contains constant values used throughout the application.
-- **db.ts**: Responsible for establishing a connection to MongoDB.
+- **fulfillments/**: Manages the "fulfillments" functionality of the application.
 - **haves/**: Manages the "haves" functionality of the application.
-- **index.d.ts**: TypeScript declaration file for the main application file.
-- **index.ts**: Entry point of the application where Express app is initialized.
 - **middleware/**: Contains middleware functions, including authentication.
 - **needs/**: Manages the "needs" functionality of the application.
-- **router.ts**: Defines route definitions for the application.
 - **users/**: Manages user-related operations, including controllers, models, and types.
+- **constants.ts**: Contains constant values used throughout the application.
+- **db.ts**: Responsible for establishing a connection to MongoDB.
+- **index.d.ts**: TypeScript declaration file for the main application file.
+- **index.ts**: Entry point of the application where Express app is initialized.
+- **router.ts**: Defines route definitions for the application.
 
 ## Usage
 - Once the server is running, you can interact with it through HTTP requests to the defined endpoints.

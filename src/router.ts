@@ -1,11 +1,21 @@
 import express from 'express'
 
-import { 
+import {
   createUser,
   getUser,
   getUsers,
   loginUser
 } from './users/user.controller'
+
+import {
+  getHaves,
+  createHave,
+  getHave,
+  updateHave,
+  deleteHave
+}
+from './have/have.controller'
+
 import { verifyToken } from './middleware/auth'
 
 
@@ -33,5 +43,14 @@ router.route('/users')
 router.route('/users/:id')
   .get(getUser)
 
+// Have routes
+router.route('/api/haves')
+  .get(getHaves)
+  .post(createHave)
+
+router.route('/api/haves/:id')
+  .get(getHave)
+  .put(updateHave)
+  .delete(deleteHave)
 
 export default router
