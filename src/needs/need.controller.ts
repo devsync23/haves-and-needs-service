@@ -32,7 +32,7 @@ export async function getNeed(req: Request, res: Response) {
 
 export async function getNeeds(req: Request, res: Response) {
     try {
-        res.send({ need: needsMockData })
+        res.send({ needs: needsMockData })
     }
     catch (err) {
         console.error(err)
