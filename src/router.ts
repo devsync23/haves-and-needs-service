@@ -65,11 +65,11 @@ router.route('/needs/:id')
   .delete(deleteNeed)
 
 // Have routes
-router.route('/api/haves')
+router.route('/haves')
   .get(getHaves)
   .post(createHave)
 
-router.route('/api/haves/:id')
+router.route('/haves/:id')
   .get(getHave)
   .put(updateHave)
   .delete(deleteHave)
