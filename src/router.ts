@@ -14,9 +14,12 @@ import {
   updateHave,
   deleteHave
 }
-from './have/have.controller'
+from './haves/have.controller'
 
-import { validateRegister, validateUserRequest } from './users/user.middleware'
+import {
+  validateRegister,
+  validateUserRequest
+} from './users/user.middleware'
 
 import { verifyToken } from './middleware/auth'
 
