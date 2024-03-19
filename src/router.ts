@@ -19,6 +19,7 @@ from './have/have.controller'
 import { validateUserRequest, validateRegister } from './users/user.middleware'
 import { verifyToken } from './middleware/auth'
 import { validateHave } from './have/have.middleware'
+import { validateNeed } from './needs/need.middleware'
 
 import {
   createNeed,
@@ -57,7 +58,7 @@ router.route('/users/:id')
 // Need routes
 router.route('/needs')
   .get(getNeeds)
-  .post(createNeed)
+  .post(validateNeed,createNeed)
 
 router.route('/needs/:id')
   .get(getNeed)
