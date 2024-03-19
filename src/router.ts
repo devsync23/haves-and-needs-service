@@ -16,7 +16,7 @@ import {
 }
 from './have/have.controller'
 
-import { validateUserRequest } from './users/user.middleware'
+import { validateUserRequest, validateRegister } from './users/user.middleware'
 
 import { verifyToken } from './middleware/auth'
 
