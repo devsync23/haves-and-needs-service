@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import Need from './needs/needs.model'
 
 export async function initMongoose() {
   try {
@@ -8,4 +9,3 @@ export async function initMongoose() {
     console.error(error);
   }
 }
-

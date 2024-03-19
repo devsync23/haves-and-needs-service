@@ -1,9 +1,10 @@
-import { model, Schema } from 'mongoose'
+import { model, Schema, Types } from 'mongoose'
 import User from '../users/user.model'
 
 const NeedSchema = new Schema({
     user: {
-        type: User,
+        type: Types.ObjectId,
+        ref: "User",
         require: true
     },
     title: {

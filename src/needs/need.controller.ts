@@ -33,9 +33,6 @@ export async function getNeed(req: Request, res: Response) {
     }
 }
 
-// make one based off of title
-// make one based off of zipcode
-
 export async function getNeeds(req: Request, res: Response) {
     try {
         const needs = await Need.find()
@@ -45,10 +42,13 @@ export async function getNeeds(req: Request, res: Response) {
         console.error(err)
     }
 }
+
+// make one based off of zipcode
 export async function getNeedsFromZip(req: Request, res: Response) {
     try {
-        const { zipcode } = req.body
-        const response = await Need.find({ zipcode: zipcode })
+        const { zip } = req.body
+        const response = await Need.find({ zip })
+        console.log(response)
         res.send({ needs: response })
     }
     catch (err) {
@@ -56,11 +56,40 @@ export async function getNeedsFromZip(req: Request, res: Response) {
     }
 }
 
+// make one based off of title
 export async function getNeedsFromTitle(req: Request, res: Response) {
     try {
         const { title } = req.body
-        const response = await Need.find({ title: title })
-        res.send({ needs: response })
+        const searchWords = title.split(' ')
+        const regexArray = searchWords.map((word: string | RegExp) => new RegExp(word, 'i'))
+        const needs = await Need.find()
+        const rankedNeeds = needs.map(need => {
+            const matches = regexArray.reduce((totalMatches: number, regex: { [Symbol.match](string: string): RegExpMatchArray | null; }) => {
+                return totalMatches + (need.title?.match(regex) || []).length
+            }, 0)
+            return { need, matches }
+        }).sort((a, b) => b.matches - a.matches)
+        res.send({ rankedNeeds })
+    }
+    catch (err) {
+        console.error(err)
+    }
+}
+
+
+export async function getNeedsFromDescription(req: Request, res: Response) {
+    try {
+        const { description } = req.body
+        const searchWords = description.split(' ')
+        const regexArray = searchWords.map((word: string | RegExp) => new RegExp(word, 'i'))
+        const needs = await Need.find()
+        const rankedNeeds = needs.map(need => {
+            const matches = regexArray.reduce((totalMatches: number, regex: { [Symbol.match](string: string): RegExpMatchArray | null; }) => {
+                return totalMatches + (need.description?.match(regex) || []).length
+            }, 0)
+            return { need, matches }
+        }).sort((a, b) => b.matches - a.matches)
+        res.send({ rankedNeeds })
     }
     catch (err) {
         console.error(err)
@@ -69,16 +98,15 @@ export async function getNeedsFromTitle(req: Request, res: Response) {
 
 export async function createNeed(req: Request, res: Response) {
     try {
-        const { user, title, description, zip, quantity } = req.body
+        const { title, description, zip, quantity } = req.body
         const newNeed = new Need({
-            user,
             title,
             description,
             zip,
             quantity
         })
         await newNeed.save()
-        res.send({ message: `${newNeed.title} with ${newNeed.quantity} at ${newNeed.zip} has been created` })
+        res.send({ message: `${newNeed.title} with a quantity of ${newNeed.quantity} at zipcode ${newNeed.zip} has been created` })
     }
     catch (err) {
         console.error(err)
@@ -88,8 +116,10 @@ export async function createNeed(req: Request, res: Response) {
 export async function updateNeed(req: Request, res: Response) {
     try {
         const needId = req.params.id
+        console.log(needId)
         const updates = req.body
-        const response = await Need.updateOne({ _id: needId }, updates)
+        const response = await Need.findOneAndUpdate({ _id: needId }, updates, { new: true })
+        console.log(response)
         res.send({ message: `${needId} has been updated` })
     }
     catch (err) {
