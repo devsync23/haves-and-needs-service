@@ -14,9 +14,9 @@ import {
   updateHave,
   deleteHave
 }
-from './have/have.controller'
+  from './have/have.controller'
 
-import { validateUserRequest } from './users/user.middleware'
+import { validateUserRequest, validateRegister } from './users/user.middleware'
 
 import { verifyToken } from './middleware/auth'
 
@@ -24,10 +24,11 @@ import {
   createNeed,
   deleteNeed,
   getNeed,
-  getNeeds,
+  getNeedsFromZip,
+  getNeedsFromTitle,
   updateNeed
 }
-from './needs/need.controller'
+  from './needs/need.controller'
 
 
 const router = express.Router()
@@ -56,8 +57,13 @@ router.route('/users/:id')
 
 // Need routes
 router.route('/needs')
-  .get(getNeeds)
   .post(createNeed)
+
+router.route('/needs-zipcode')
+  .get(getNeedsFromZip)
+
+router.route('/needs-title')
+  .get(getNeedsFromTitle)
 
 router.route('/needs/:id')
   .get(getNeed)
