@@ -35,6 +35,16 @@ export async function getNeed(req: Request, res: Response) {
 
 // make one based off of title
 // make one based off of zipcode
+
+export async function getNeeds(req: Request, res: Response) {
+    try {
+        const needs = await Need.find()
+        res.send({ needs: needs })
+    }
+    catch (err) {
+        console.error(err)
+    }
+}
 export async function getNeedsFromZip(req: Request, res: Response) {
     try {
         const { zipcode } = req.body

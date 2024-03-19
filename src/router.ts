@@ -26,7 +26,8 @@ import {
   getNeed,
   getNeedsFromZip,
   getNeedsFromTitle,
-  updateNeed
+  updateNeed,
+  getNeeds
 }
   from './needs/need.controller'
 
@@ -58,12 +59,13 @@ router.route('/users/:id')
 // Need routes
 router.route('/needs')
   .post(createNeed)
+  .get(getNeeds)
 
 router.route('/needs-zipcode')
-  .get(getNeedsFromZip)
+  .post(getNeedsFromZip)
 
 router.route('/needs-title')
-  .get(getNeedsFromTitle)
+  .post(getNeedsFromTitle)
 
 router.route('/needs/:id')
   .get(getNeed)
