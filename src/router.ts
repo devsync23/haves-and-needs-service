@@ -63,13 +63,13 @@ router.route('/needs')
   .get(getNeeds)
 
 router.route('/needs-zip')
-  .post(verifyToken, getNeedsFromZip)
+  .get(verifyToken, getNeedsFromZip)
 
 router.route('/needs-title')
-  .post(verifyToken, getNeedsFromTitle)
+  .get(verifyToken, getNeedsFromTitle)
 
 router.route('/needs-description')
-  .post(verifyToken, getNeedsFromDescription)
+  .get(verifyToken, getNeedsFromDescription)
 
 router.route('/needs/:id')
   .get(getNeed)

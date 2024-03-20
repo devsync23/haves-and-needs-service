@@ -46,7 +46,7 @@ export async function getNeeds(req: Request, res: Response) {
 // make one based off of zipcode
 export async function getNeedsFromZip(req: Request, res: Response) {
     try {
-        const { zip } = req.body
+        const { zip } = req.params
         const response = await Need.find({ zip })
         console.log(response)
         res.send({ needs: response })
@@ -59,7 +59,7 @@ export async function getNeedsFromZip(req: Request, res: Response) {
 // make one based off of title
 export async function getNeedsFromTitle(req: Request, res: Response) {
     try {
-        const { title } = req.body
+        const { title } = req.params
         const searchWords = title.split(' ')
         const regexArray = searchWords.map((word: string | RegExp) => new RegExp(word, 'i'))
         const needs = await Need.find()
@@ -79,7 +79,7 @@ export async function getNeedsFromTitle(req: Request, res: Response) {
 
 export async function getNeedsFromDescription(req: Request, res: Response) {
     try {
-        const { description } = req.body
+        const { description } = req.params
         const searchWords = description.split(' ')
         const regexArray = searchWords.map((word: string | RegExp) => new RegExp(word, 'i'))
         const needs = await Need.find()
