@@ -20,22 +20,11 @@ export async function getUsers(req: Request, res: Response) {
 
 export async function createUser(req: Request, res: Response, next: NextFunction) {
   try {
-<<<<<<< HEAD
-    const { email, name, zip, password } = req.body;
-
-    if (!validateRegister(req, res, next)) {
-      return res.status(400).json({ message: 'Invalid email format' });
-    }
-
-    const hashPassword = await bcrypt.hash(password, 10)
-=======
     const hashPassword = await bcrypt.hash(req.body.password, 10)
->>>>>>> main
     const user = new User({
-      name: name,
-      email: email,
-      password: hashPassword,
-      zipcode: zip
+      name: req.body.name,
+      email: req.body.email,
+      password: hashPassword
     })
     await user.save()
     const token = jwt.sign(
