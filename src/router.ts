@@ -57,21 +57,21 @@ router.route('/users/:id')
 // Need routes
 router.route('/needs')
   .get(getNeeds)
-  .post(createNeed)
+  .post(verifyToken, createNeed)
 
 router.route('/needs/:id')
   .get(getNeed)
-  .put(updateNeed)
-  .delete(deleteNeed)
+  .put(verifyToken, updateNeed)
+  .delete(verifyToken, deleteNeed)
 
 // Have routes
-router.route('/api/haves')
+router.route('/haves')
   .get(getHaves)
-  .post(validateHave, createHave)
+  .post(verifyToken, validateHave, createHave)
 
-router.route('/api/haves/:id')
+router.route('/haves/:id')
   .get(getHave)
-  .put(updateHave)
-  .delete(deleteHave)
+  .put(verifyToken, updateHave)
+  .delete(verifyToken, deleteHave)
 
 export default router
