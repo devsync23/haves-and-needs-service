@@ -20,6 +20,7 @@ export async function getUsers(req: Request, res: Response) {
 
 export async function createUser(req: Request, res: Response, next: NextFunction) {
   try {
+<<<<<<< HEAD
     const { email, name, zip, password } = req.body;
 
     if (!validateRegister(req, res, next)) {
@@ -27,6 +28,9 @@ export async function createUser(req: Request, res: Response, next: NextFunction
     }
 
     const hashPassword = await bcrypt.hash(password, 10)
+=======
+    const hashPassword = await bcrypt.hash(req.body.password, 10)
+>>>>>>> main
     const user = new User({
       name: name,
       email: email,
