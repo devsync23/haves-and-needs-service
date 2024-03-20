@@ -59,22 +59,22 @@ router.route('/users/:id')
 
 // Need routes
 router.route('/needs')
-  .post(createNeed)
+  .post(verifyToken, createNeed)
   .get(getNeeds)
 
 router.route('/needs-zip')
-  .post(getNeedsFromZip)
+  .post(verifyToken, getNeedsFromZip)
 
 router.route('/needs-title')
-  .post(getNeedsFromTitle)
+  .post(verifyToken, getNeedsFromTitle)
 
 router.route('/needs-description')
-  .post(getNeedsFromDescription)
+  .post(verifyToken, getNeedsFromDescription)
 
 router.route('/needs/:id')
   .get(getNeed)
-  .put(updateNeed)
-  .delete(deleteNeed)
+  .put(verifyToken, updateNeed)
+  .delete(verifyToken, deleteNeed)
 
 // Have routes
 router.route('/api/haves')

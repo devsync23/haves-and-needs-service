@@ -99,14 +99,16 @@ export async function getNeedsFromDescription(req: Request, res: Response) {
 export async function createNeed(req: Request, res: Response) {
     try {
         const { title, description, zip, quantity } = req.body
+        const { user } = res.locals
         const newNeed = new Need({
             title,
             description,
             zip,
-            quantity
+            quantity,
+            user
         })
         await newNeed.save()
-        res.send({ message: `${newNeed.title} with a quantity of ${newNeed.quantity} at zipcode ${newNeed.zip} has been created` })
+        res.send({ message: `${user.name} has created a need: ${newNeed.title} with a quantity of ${newNeed.quantity} at zipcode ${newNeed.zip} has been created` })
     }
     catch (err) {
         console.error(err)
