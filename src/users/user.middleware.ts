@@ -17,6 +17,7 @@ export async function validateUserRequest(req: Request, res: Response, next: Nex
     try{
         const userEmail = req.body.email
         const userPassword = req.body.password
+        console.log({ reqBody: userEmail, userPassword })
         if(!userEmail || !userPassword){
             res.status(400).send('Error: Missing user email or user password')
         }
