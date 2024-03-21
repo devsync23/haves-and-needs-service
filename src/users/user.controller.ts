@@ -20,12 +20,6 @@ export async function getUsers(req: Request, res: Response) {
 
 export async function createUser(req: Request, res: Response, next: NextFunction) {
   try {
-    const { email } = req.body;
-
-    if (!validateRegister(req, res, next)) {
-      return res.status(400).json({ message: 'Invalid email format' });
-    }
-
     const hashPassword = await bcrypt.hash(req.body.password, 10)
     const user = new User({
       name: req.body.name,
@@ -53,7 +47,7 @@ export async function loginUser(req: Request, res: Response) {
   const { email, password } = req.body;
   try {
     const user = await User.findOne({ email });
-    if (!user)return res.status(404).json({ message: 'User not found' })
+    if (!user) return res.status(404).json({ message: 'User not found' })
 
     const isPasswordValid = await bcrypt.compare(password, user.password ?? '')
     if (!isPasswordValid) return res.status(401).json({ message: 'Invalid password' })

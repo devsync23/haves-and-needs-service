@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Schema, Types, model } from "mongoose";
 import User from "../users/user.model";
 
 
@@ -17,7 +17,8 @@ const HaveSchema = new Schema(
       require: true,
     },
     user: {
-      type: User,
+      type: Types.ObjectId,
+      ref: "User",
       require: true,
     },
     quantity: {
