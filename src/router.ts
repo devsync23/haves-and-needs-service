@@ -77,13 +77,13 @@ router.route('/needs/:id')
   .delete(verifyToken, deleteNeed)
 
 // Have routes
-router.route('/api/haves')
+router.route('/haves')
   .get(getHaves)
-  .post(validateHave, createHave)
+  .post(verifyToken, validateHave, createHave)
 
-router.route('/api/haves/:id')
+router.route('/haves/:id')
   .get(getHave)
-  .put(updateHave)
-  .delete(deleteHave)
+  .put(verifyToken, updateHave)
+  .delete(verifyToken, deleteHave)
 
 export default router
