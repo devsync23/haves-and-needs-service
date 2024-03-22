@@ -100,7 +100,6 @@ export async function createNeed(req: Request, res: Response) {
     try {
         const { title, description, zip, quantity } = req.body
         const { user } = res.locals
-        // console.log(user.name)
         const newNeed = new Need({
             title,
             description,
