@@ -100,14 +100,16 @@ export async function createNeed(req: Request, res: Response) {
     try {
         const { title, description, zip, quantity } = req.body
         const { user } = res.locals
+        // console.log(user.name)
         const newNeed = new Need({
             title,
             description,
             zip,
             quantity,
-            user
+            user: user.userId
         })
         await newNeed.save()
+
         res.send({ message: `${user.name} has created a need: ${newNeed.title} with a quantity of ${newNeed.quantity} at zipcode ${newNeed.zip} has been created` })
     }
     catch (err) {
