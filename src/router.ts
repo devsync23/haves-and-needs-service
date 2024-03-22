@@ -79,11 +79,11 @@ router.route('/needs/:id')
 // Have routes
 router.route('/api/haves')
   .get(getHaves)
-  .post(validateHave, createHave)
+  .post(verifyToken, validateHave, createHave)
 
 router.route('/api/haves/:id')
   .get(getHave)
-  .put(updateHave)
-  .delete(deleteHave)
+  .put(verifyToken, updateHave)
+  .delete(verifyToken, deleteHave)
 
 export default router
