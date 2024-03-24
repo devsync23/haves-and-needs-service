@@ -105,9 +105,10 @@ export async function createNeed(req: Request, res: Response) {
             description,
             zip,
             quantity,
-            user
+            user: user.userId
         })
         await newNeed.save()
+
         res.send({ message: `${user.name} has created a need: ${newNeed.title} with a quantity of ${newNeed.quantity} at zipcode ${newNeed.zip} has been created` })
     }
     catch (err) {

@@ -19,6 +19,7 @@ import {
 import { validateUserRequest, validateRegister } from './users/user.middleware'
 import { verifyToken } from './middleware/auth'
 import { validateHave } from './have/have.middleware'
+import { validateNeed } from './needs/need.middleware'
 
 import {
   createNeed,
@@ -59,7 +60,7 @@ router.route('/users/:id')
 
 // Need routes
 router.route('/needs')
-  .post(verifyToken, createNeed)
+  .post(verifyToken, validateHave, createNeed)
   .get(getNeeds)
 
 router.route('/needs-zip')
@@ -77,11 +78,11 @@ router.route('/needs/:id')
   .delete(verifyToken, deleteNeed)
 
 // Have routes
-router.route('/api/haves')
+router.route('/haves')
   .get(getHaves)
   .post(verifyToken, validateHave, createHave)
 
-router.route('/api/haves/:id')
+router.route('/haves/:id')
   .get(getHave)
   .put(verifyToken, updateHave)
   .delete(verifyToken, deleteHave)

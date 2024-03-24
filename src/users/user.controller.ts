@@ -53,10 +53,13 @@ export async function loginUser(req: Request, res: Response) {
     if (!isPasswordValid) return res.status(401).json({ message: 'Invalid password' })
 
     // Password is valid, generate JWT token
+    console.log("TEST!!!!!!!!!")
     const token = jwt.sign(
       {
         userId: user._id,
-        email: user.email
+        email: user.email,
+        name: user.name,
+        zip: user.zip
       },
       JWT_SECRET,
       { expiresIn: '1h' }
