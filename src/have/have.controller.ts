@@ -1,46 +1,26 @@
-import { Request, Response, NextFunction } from 'express'
+import { Request, Response } from 'express'
 import Have from './have.model'
-import jwt from 'jsonwebtoken';
-
-const havesMockData = [
-    {
-        title: "Product X",
-        description: "A high-tech device designed to simplify your life",
-        zip: 90210,
-        quantity: 10,
-    },
-    {
-        title: "Item Y",
-        description: "An essential tool for everyday tasks",
-        zip: 60601,
-        quantity: 3,
-    },
-    {
-        title: "Accessory Z",
-        description: "A stylish add-on to enhance your experience",
-        zip: 10001,
-        quantity: 8,
-    }
-];
 
 // under api/haves route
 export async function createHave(req: Request ,res: Response){
-    try {
-        const have = new Have({
-          title: req.body.title,
-          description: req.body.description,
-          zip: req.body.zip,
-          quantity: req.body.quantity,
-        })
-        await have.save()
-        res.send({
-          have
-        })
-      } catch (err) {
-        console.error("Error creating have:", err);
-        res.status(500).json({ error: "Internal server error" });
-      }
-    }
+  try {
+    const { user } = res.locals
+    const have = new Have({
+      title: req.body.title,
+      description: req.body.description,
+      zip: req.body.zip,
+      quantity: req.body.quantity,
+      user: user.userId
+    })
+    await have.save()
+    res.send({
+      have
+    })
+  } catch (err) {
+    console.error("Error creating have:", err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+}
 
 export async function getHaves(req: Request ,res: Response){
     try {
