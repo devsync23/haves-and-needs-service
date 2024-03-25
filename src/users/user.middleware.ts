@@ -3,12 +3,21 @@ import bcrypt from "bcrypt"
 import { Request, Response, NextFunction } from 'express';
 
 export function validateRegister(req: Request, res: Response, next: NextFunction) {
-    const { email } = req.body;
+    const { email, name, password, zip } = req.body;
     if (!email) {
         return res.status(400).json({ message: 'Email is required' });
     }
     if (!email.includes("@") || !email.includes('.com')) {
         return res.status(400).json({ message: 'Invalid email format' });
+    }
+    if (!name) {
+        return res.status(400).json({ message: 'Name is required' });
+    }
+    if (!zip) {
+        return res.status(400).json({ message: 'Zip is required' });
+    }
+    if (!password) {
+        return res.status(400).json({ message: 'Password is required' });
     }
     next();}
 

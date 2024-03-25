@@ -60,7 +60,7 @@ router.route('/users/:id')
 
 // Need routes
 router.route('/needs')
-  .post(verifyToken, validateHave, createNeed)
+  .post(verifyToken, validateNeed, createNeed)
   .get(getNeeds)
 
 router.route('/needs-zip')
