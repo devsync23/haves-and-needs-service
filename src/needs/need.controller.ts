@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import Need from './needs.model'
+import Need from './need.model'
 
 const needsMockData = [
     {

@@ -24,7 +24,8 @@ export async function createUser(req: Request, res: Response, next: NextFunction
     const user = new User({
       name: req.body.name,
       email: req.body.email,
-      password: hashPassword
+      password: hashPassword,
+      zip: req.body.zip
     })
     await user.save()
     const token = jwt.sign(
@@ -53,7 +54,6 @@ export async function loginUser(req: Request, res: Response) {
     if (!isPasswordValid) return res.status(401).json({ message: 'Invalid password' })
 
     // Password is valid, generate JWT token
-    console.log("TEST!!!!!!!!!")
     const token = jwt.sign(
       {
         userId: user._id,

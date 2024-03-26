@@ -14,11 +14,11 @@ import {
   updateHave,
   deleteHave
 }
-  from './have/have.controller'
+  from './haves/have.controller'
 
 import { validateUserRequest, validateRegister } from './users/user.middleware'
 import { verifyToken } from './middleware/auth'
-import { validateHave } from './have/have.middleware'
+import { validateHave } from './haves/have.middleware'
 import { validateNeed } from './needs/need.middleware'
 
 import {
@@ -60,7 +60,7 @@ router.route('/users/:id')
 
 // Need routes
 router.route('/needs')
-  .post(verifyToken, validateHave, createNeed)
+  .post(verifyToken, validateNeed, createNeed)
   .get(getNeeds)
 
 router.route('/needs-zip')
