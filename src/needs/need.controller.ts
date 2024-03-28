@@ -43,6 +43,26 @@ export async function getNeeds(req: Request, res: Response) {
     }
 }
 
+export async function getFulfilledNeeds(req: Request, res: Response) {
+    try {
+        const fulfilledNeeds = await Need.find({ fulfilled: true })
+        res.send({ needs: fulfilledNeeds })
+    }
+    catch (err) {
+        console.error(err)
+    }
+}
+
+export async function getUnFulfilledNeeds(req: Request, res: Response) {
+    try {
+        const unFulfilledNeeds = await Need.find({ fulfilled: true })
+        res.send({ needs: unFulfilledNeeds })
+    }
+    catch (err) {
+        console.error(err)
+    }
+}
+
 // make one based off of zipcode
 export async function getNeedsFromZip(req: Request, res: Response) {
     try {

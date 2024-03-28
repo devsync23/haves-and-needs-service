@@ -23,6 +23,10 @@ const NeedSchema = new Schema({
         type: Number,
         require: true
     },
+    fulfilled: {
+        type: Boolean,
+        // require: true
+    }
 
 }, {
     timestamps: true
