@@ -55,7 +55,7 @@ export async function getFulfilledNeeds(req: Request, res: Response) {
 
 export async function getUnFulfilledNeeds(req: Request, res: Response) {
     try {
-        const unFulfilledNeeds = await Need.find({ fulfilled: true })
+        const unFulfilledNeeds = await Need.find({ fulfilled: false })
         res.send({ needs: unFulfilledNeeds })
     }
     catch (err) {

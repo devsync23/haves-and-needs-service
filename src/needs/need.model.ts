@@ -1,5 +1,4 @@
 import { model, Schema, Types } from 'mongoose'
-import User from '../users/user.model'
 
 const NeedSchema = new Schema({
     user: {
@@ -24,8 +23,9 @@ const NeedSchema = new Schema({
         require: true
     },
     fulfilled: {
-        type: Boolean,
-        // require: true
+        type: Types.ObjectId,
+        ref: "Fulfillment",
+        require: true
     }
 
 }, {
