@@ -24,8 +24,7 @@ const NeedSchema = new Schema({
     },
     fulfilled: {
         type: Types.ObjectId,
-        ref: "Fulfillment",
-        require: true
+        ref: "Fulfillment"
     }
 
 }, {
