@@ -24,10 +24,15 @@ const fulfillmentSchema = new Schema(
             type: Date,
             default: () => Date.now()
         },
+        fulfilledStatus: {
+            type: Boolean,
+            default: false,
+            require: true
+        }
     },
     {
         timestamps: true,
     }
 );
 
-export default model('fulfillment', fulfillmentSchema)
+export default model('Fulfillment', fulfillmentSchema)
