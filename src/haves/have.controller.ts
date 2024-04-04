@@ -22,9 +22,11 @@ export async function createHave(req: Request ,res: Response){
   }
 }
 
+
+
 export async function getHaves(req: Request ,res: Response){
     try {
-        const haves = await Have.find();
+        const haves = await Have.find({ "fulfillment": { $eq: null}});
         res.status(200).send({ haves })
       } catch (err) {
         console.error("Error fetching haves:", err);
@@ -34,6 +36,7 @@ export async function getHaves(req: Request ,res: Response){
 
 export async function getHave(req: Request, res: Response) {
     try {
+
         const haveId = req.params.id
         const have = await Have.findById(haveId)
         console.log(have)

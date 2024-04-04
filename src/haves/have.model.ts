@@ -1,5 +1,6 @@
 import { Schema, Types, model } from "mongoose";
 import User from "../users/user.model";
+import fulfillment from "../fulfillment/fulfillment.model"
 
 
 const HaveSchema = new Schema(
@@ -24,6 +25,10 @@ const HaveSchema = new Schema(
     quantity: {
       type: Number,
       require: true,
+    },
+    fulfillment: {
+      type: Types.ObjectId,
+      ref: "Fulfillment",
     }
   },
   {
