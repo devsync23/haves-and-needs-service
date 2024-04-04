@@ -1,6 +1,6 @@
 import { Schema, Types, model } from "mongoose";
 import User from "../users/user.model";
-import fulfillment from "../fulfillment/fulfillment.model"
+import Fulfillment from "../fulfillment/fulfillment.model"
 
 
 const HaveSchema = new Schema(
