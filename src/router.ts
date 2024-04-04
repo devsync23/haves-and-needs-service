@@ -29,7 +29,9 @@ import {
   getNeedsFromTitle,
   updateNeed,
   getNeeds,
-  getNeedsFromDescription
+  getNeedsFromDescription,
+  getFulfilledNeeds,
+  getUnFulfilledNeeds
 }
   from './needs/need.controller'
 
@@ -71,6 +73,12 @@ router.route('/needs-title')
 
 router.route('/needs-description')
   .get(verifyToken, getNeedsFromDescription)
+
+router.route('/needs-fulfilled')
+  .get(verifyToken, getFulfilledNeeds)
+
+router.route('/needs-unfulfilled')
+  .get(verifyToken, getUnFulfilledNeeds)
 
 router.route('/needs/:id')
   .get(getNeed)

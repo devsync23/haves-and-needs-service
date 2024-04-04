@@ -1,5 +1,4 @@
 import { model, Schema, Types } from 'mongoose'
-import User from '../users/user.model'
 
 const NeedSchema = new Schema({
     user: {
@@ -23,6 +22,10 @@ const NeedSchema = new Schema({
         type: Number,
         require: true
     },
+    fulfilled: {
+        type: Types.ObjectId,
+        ref: "Fulfillment"
+    }
 
 }, {
     timestamps: true
