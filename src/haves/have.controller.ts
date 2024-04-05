@@ -36,30 +36,17 @@ export async function getHave(req: Request, res: Response) {
   try {
     const haveId = req.params.id
     const have = await Have.findById(haveId)
-    console.log(have)
-    res.send({ haveDetails: have })
+    if (have) {
+      const zip = have.zip
+      const haves = await Have.find({ zip: zip })
+      res.send({ have: have, haves: haves })
+    }
+    else res.send({ have: have, message: 'No other haves found' })
   } catch (err) {
     res.status(404).send({ err })
   }
 }
 
-export async function getHavesFromZip(req: Request, res: Response) {
-  try {
-    const haveId = req.params.id
-    const have = await Have.findById(haveId)
-    console.log('this is my have', have)
-    if (have) {
-      const zip = have.zip
-      const response = await Have.find({ zip: zip })
-      console.log(response)
-      res.send({ haves: response })
-    }
-    res.send({ message: 'no haves to fetch' })
-  }
-  catch (err) {
-    console.error(err)
-  }
-}
 
 export async function updateHave(req: Request, res: Response) {
   try {
